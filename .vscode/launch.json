@@ -1,0 +1,23 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: FastAPI",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": [
+                "main:app",
+                "--reload"
+            ],
+            "jinja": true,
+            "env": {
+                "MONGO_URL": "mongodb+srv://cuongnguyenchis1712:1234567890@cluster0.ew9np.mongodb.net/",
+                "MONGO_DB_NAME": "software-technology-assignment"
+            }
+        }
+    ]
+}
