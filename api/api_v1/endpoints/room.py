@@ -44,7 +44,7 @@ async def list_room():
     "/schedules"
 )
 async def get_room_schedules(
-    date: str = Header(..., description="Date in YYYY-MM-DD format"),
+    date: str,
 ):
     try:
         rooms = await Room.find_all().to_list()
