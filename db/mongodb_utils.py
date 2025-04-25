@@ -5,13 +5,12 @@ from db.mongodb import db
 from models.booking import  Booking
 from models.room import Room
 from models.user import User
-from models.room_history import RoomHistory
 
 
 async def connect_to_mongo(
     mongo_uri: str = config.MONGO_URL, dbname: str = config.DATABASE_NAME
 ):
-    print("connecting to database...")
+    print("Connecting to database...")
     db.client = AsyncIOMotorClient(
         str(mongo_uri),
         maxPoolSize=config.MAX_CONNECTIONS_COUNT,
@@ -21,8 +20,7 @@ async def connect_to_mongo(
     document_models = [
         User,
         Room,
-        Booking,
-        RoomHistory,
+        Booking
     ]
     await init_beanie(
         db.db,
@@ -33,8 +31,8 @@ async def connect_to_mongo(
         document_name = document.Settings.name
         if document_name not in db_collections:
             await db.db.create_collection(document_name)
-            print(f"created {document_name}")
-    print("connected to database！")
+            print(f"Created {document_name}")
+    print("Connected to database！")
     return document_models
 
 

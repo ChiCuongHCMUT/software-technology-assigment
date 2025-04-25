@@ -1,16 +1,15 @@
 from beanie import Document
 from pydantic import BaseModel
 from typing import Optional
-from datetime import datetime
-
 
 class CreateBookingRequest(BaseModel):
     room_id: str
     user_id: str
     quantity: int
     purpose: str
-    time_start: datetime
-    time_end: datetime
+    time_start: int
+    time_end: int
+    date: str
 
 
 class UpdateBookingRequest(BaseModel):
@@ -18,8 +17,9 @@ class UpdateBookingRequest(BaseModel):
     user_id: Optional[str] = None
     quantity: Optional[int] = None
     purpose: Optional[str] = None
-    time_start: Optional[datetime] = None
-    time_end: Optional[datetime] = None
+    time_start: Optional[int] = None
+    time_end: Optional[int] = None
+    date: Optional[str] = None
     status: Optional[str] = None
 
 
@@ -29,8 +29,9 @@ class Booking(Document):
     user_id: Optional[str] = None
     quantity: Optional[int] = None
     purpose: Optional[str] = None
-    time_start: Optional[datetime] = None
-    time_end: Optional[datetime] = None
+    time_start: Optional[int] = None
+    time_end: Optional[int] = None
+    date: Optional[str] = None
     status: Optional[str] = None
 
     class Settings:

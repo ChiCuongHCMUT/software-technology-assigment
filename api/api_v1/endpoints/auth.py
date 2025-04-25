@@ -14,12 +14,12 @@ async def create_admin_user(
     create_admin_user: CreateUserRequest
 ):
     try:
-        existing = await User.find_one(User.user_name == create_admin_user.user_name)
+        existing = await User.find_one(User.email == create_admin_user.email)
         if existing:
             raise HTTPException(status_code=400, detail="Email already registered")
 
         new_user = User(
-            user_id=random.randint(1000000, 9999999),
+            user_id=str(random.randint(1000000, 9999999)),
             user_name=create_admin_user.user_name,
             email=create_admin_user.email,
             phone_number=create_admin_user.phone_number,
@@ -35,11 +35,11 @@ async def create_admin_user(
     "/signin/admin",
 )
 async def signin_admin_user(
-    user_name: str = Header(..., description="User Name"),
+    email: str = Header(..., description="Email"),
     password: str = Header(..., description="Password"),
 ):
     try:
-        user = await User.find_one(User.user_name == user_name, User.role == "admin")
+        user = await User.find_one(User.email == email, User.role == "admin")
         if not user or not verify_password(password, user.password):
             raise HTTPException(status_code=401, detail="User name or password is incorrect!")
 

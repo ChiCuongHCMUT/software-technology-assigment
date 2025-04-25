@@ -18,7 +18,8 @@ class UpdateRoomRequest(BaseModel):
 class Room(Document):
     room_id: Optional[str] = None
     capacity: Optional[int] = None
-    current_reserved_by:  Optional[str] = None
+    room_state: Optional[str] = None
+    current_reserved_by_booking_id:  Optional[str] = None
     current_reserved_by_user_id: Optional[str] = None
 
     class Settings:
