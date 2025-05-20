@@ -1,9 +1,9 @@
 from fastapi import APIRouter
-from .endpoints.room import router as room_router
-from .endpoints.booking import router as booking_router
-from .endpoints.auth import router as auth_router
+from .endpoints.internal_checkin_device import router as internal_checkin_router
+from .endpoints.enroll_device import router as enroll_router
+from .endpoints.checkin_device import router as checkin_router
 
 router = APIRouter()
-router.include_router(room_router, tags=["Room Management"])
-router.include_router(booking_router, tags=["Booking Management"])
-router.include_router(auth_router, tags=["Authentication"])
+router.include_router(checkin_router, tags=["Device Checkin"])
+router.include_router(enroll_router, tags=["Device Enroll"])
+router.include_router(internal_checkin_router, tags=["Internal Checkin Device"])
